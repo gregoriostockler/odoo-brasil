@@ -462,6 +462,7 @@ class InvoiceEletronic(models.Model):
             'indFinal': self.ind_final or '1',
             'indPres': self.ind_pres or '1',
             'procEmi': 0
+            'verProc': 'Odoo 12 - Porter'
         }
         # Documentos Relacionados
         documentos = []
