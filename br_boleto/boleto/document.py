@@ -163,6 +163,7 @@ class BoletoBB(Boleto):
         self.branch_number = order_line.src_bank_account_id.bra_number
         Boleto.__init__(self, order_line, nosso_numero)
         self.boleto.nosso_numero = self.nosso_numero
+        self.boleto.local_pagamento = "PAGÁVEL EM QUALQUER BANCO"
 
 
 class BoletoBanrisul(Boleto):
