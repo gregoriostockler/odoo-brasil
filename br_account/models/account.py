@@ -18,6 +18,7 @@ class AccountAccount(models.Model):
     account_type = fields.Selection(
         [('tax', 'Imposto'), ('income', 'Receita'), ('expense', 'Despesa')],
         string="Tipo de conta")
+    accounting_code = fields.Char(string="Código da Contabilidade")
 
 
 class AccountPaymentTerm(models.Model):
