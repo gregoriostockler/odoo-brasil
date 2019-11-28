@@ -20,6 +20,9 @@
                 <field name="account_type" />
                 <field name="accounting_code" />
             </field>
+            <field name="deprecated" position="after">
+                <field name="transitional" />
+            </field>
         </field>
     </record>
 
