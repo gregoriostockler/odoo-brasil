@@ -61,4 +61,3 @@ class ResConfigSettings(models.TransientModel):
         self.env.user.company_id.l10n_br_bankfee_account_id = (
             self.l10n_br_bankfee_account_id
         )
-
