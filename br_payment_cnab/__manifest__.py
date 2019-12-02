@@ -24,6 +24,7 @@
         'account',
         'br_account_payment',
         'br_account_voucher',
+        'br_payment_invoice',
     ],
     'data': [
         'data/data.xml',
