@@ -30,6 +30,7 @@
               <field name="payment_mode_id" />
               <field name="state" />
               <field name="name" />
+              <field name="partner_ref" />
               <field name="emission_date" />
               <field name="date_maturity" />
               <field name="amount_total" />
@@ -113,6 +114,8 @@
                             <field name="payment_order_id" />
                             <field name="move_id" />
                             <field name="move_line_id" />
+                            <field name="invoice_id" />
+                            <field name="partner_ref" />
                         </group>
                     </group>
                 </sheet>

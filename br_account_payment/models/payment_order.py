@@ -54,6 +54,9 @@ class PaymentOrderLine(models.Model):
                              default="draft", track_visibility='onchange')
     cnab_code = fields.Char(string="Código Retorno")
     cnab_message = fields.Char(string="Mensagem Retorno")
+    invoice_id = fields.Many2one(
+        'account.invoice', string="Fatura Origem")
+    partner_ref = fields.Char(string="Ref. Parceiro")
 
     @api.multi
     def unlink(self):
