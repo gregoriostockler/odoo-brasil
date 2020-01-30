@@ -40,8 +40,8 @@ class ResPartner(models.Model):
     number = fields.Char(u'Number', size=10)
 
     _sql_constraints = [
-        ('res_partner_cnpj_cpf_uniq', 'unique (cnpj_cpf)',
-         _(u'This CPF/CNPJ number is already being used by another partner!'))
+        ('res_partner_cnpj_cpf_uniq', 'unique (cnpj_cpf, company_id)',
+         _('This CPF/CNPJ number is already being used by another partner!'))
     ]
 
     @api.v8
