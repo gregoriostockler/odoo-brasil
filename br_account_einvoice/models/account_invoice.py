@@ -240,16 +240,20 @@ class AccountInvoice(models.Model):
         })
         return vals
 
+    def get_invoice_lines_to_edoc(self, type):
+        if self.company_id.l10n_br_nfse_conjugada:
+            inv_lines = self.invoice_line_ids
+        else:
+            inv_lines = self.invoice_line_ids.filtered(
+                lambda x: x.product_id.fiscal_type == type)
+        return inv_lines
+
     @api.multi
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
         for item in self:
             if item.product_document_id.electronic:
-                if item.company_id.l10n_br_nfse_conjugada:
-                    inv_lines = item.invoice_line_ids
-                else:
-                    inv_lines = item.invoice_line_ids.filtered(
-                        lambda x: x.product_id.fiscal_type == 'product')
+                inv_lines = item.get_invoice_lines_to_edoc("product")
                 if inv_lines:
                     edoc_vals = self._prepare_edoc_vals(
                         item, inv_lines, item.product_serie_id)
@@ -259,8 +263,7 @@ class AccountInvoice(models.Model):
 
             if item.service_document_id.nfse_eletronic and \
                not item.company_id.l10n_br_nfse_conjugada:
-                inv_lines = item.invoice_line_ids.filtered(
-                    lambda x: x.product_id.fiscal_type == 'service')
+                inv_lines = item.get_invoice_lines_to_edoc("service")
                 if inv_lines:
                     edoc_vals = self._prepare_edoc_vals(
                         item, inv_lines, item.service_serie_id)
