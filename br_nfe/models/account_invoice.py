@@ -26,6 +26,8 @@ class AccountInvoice(models.Model):
         readonly=True)
     sending_nfe = fields.Boolean(
         string="Enviando NFe?", compute="_compute_nfe_number")
+    nfe_eletronic = fields.Boolean(
+        related="product_document_id.electronic", readonly=True)
     nfe_exception = fields.Boolean(
         string="Problemas na NFe?", compute="_compute_nfe_number")
     nfe_status = fields.Char(
