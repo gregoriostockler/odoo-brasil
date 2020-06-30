@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
+import base64
 from datetime import datetime
 from random import SystemRandom
 
@@ -93,8 +94,17 @@ class AccountInvoice(models.Model):
                   de documento'))
         if not isinstance(report, str):
             return report
-        action = self.env.ref(report).report_action(doc)
-        return action
+        pdf, dummy = self.env.ref(report).render_qweb_pdf([doc.id])
+        self.env['ir.attachment'].create(
+            dict(
+                name="NFe-%08d.pdf" % doc.numero,
+                datas_fname="NFe-%08d.pdf" % doc.numero,
+                datas=base64.b64encode(pdf),
+                mimetype="application/pdf",
+                res_model="account.invoice",
+                res_id=self.id,
+            )
+        )
 
     def _prepare_edoc_item_vals(self, line):
         vals = {
