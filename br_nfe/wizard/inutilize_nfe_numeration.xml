@@ -12,7 +12,8 @@
                     </group>
                     <group name='modelo-serie'>
                         <field name="modelo" />
-                        <field name="serie" />
+                        <field name="company_id" readonly="1" invisible="1" />
+                        <field name="serie" domain="[('company_id', '=', company_id)]" />
                     </group>
                 </group>
                 <group name='justificativa'>

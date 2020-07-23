@@ -182,5 +182,6 @@ class InutilizedNfe(models.Model):
                 'datas_fname': file_name,
                 'description': u'',
                 'res_model': 'invoice.eletronic.inutilized',
-                'res_id': event.id
+                'res_id': event.id,
+                'mimetype': 'application/xml'
             })
