@@ -33,7 +33,7 @@ class AccountInvoice(models.Model):
 
         # Feito para evitar que o número seja incrementado duas vezes
         if 'numero' not in res:
-            res['numero'] = serie_id.internal_sequence_id.next_by_id()
+            res['numero'] = self.action_number(serie_id)
         return res
 
 
